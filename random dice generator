@@ -1,0 +1,66 @@
+class Die
+	def d100
+	  1 + rand(100)
+	end
+
+	def d20
+	  1 + rand(20)
+	end
+	
+	def d12
+	  1 + rand(12)
+	end
+
+	def d10
+	  1 + rand(10)
+	end
+	
+	def d8
+	  1 + rand(8)
+	end
+
+	def d6
+	  1 + rand(6)
+	end
+
+	def d4
+	  1 + rand(4)
+	end	
+end
+
+die = Die.new
+
+puts "I will roll a die for you, please enter one of the following."
+puts "d4, d6, d8, d10, d12, d20, d100."
+
+
+while true
+  puts ""
+  input = gets.chomp
+  puts""
+
+  if input == "d4"
+	puts die.d4
+  elsif input == "d6"
+	puts die.d6
+  elsif input == "d8"
+	puts die.d8
+  elsif input == "d10"
+	puts die.d10
+  elsif input == "d12"
+	puts die.d12
+  elsif input == "d20"
+	puts die.d20
+  elsif input == "d100"
+	puts die.d100
+  elsif input == "Dice are dumb"
+  	puts "No you are dumb!"
+  	break
+  else
+	puts "Please enter one of the dice options listed below."
+	puts "To end program, type \"Dice are dumb\""
+    puts "d4, d6, d8, d10, d12, d20, d100."
+    puts ""
+
+  end
+end
