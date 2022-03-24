@@ -135,14 +135,12 @@ def time_passes
     	puts "#{@name} give one last look at you before dissapearing from sight, maybe one day you will see that cute #{@pet} face again."
     	exit
     end
-
 end
 
 #ends class Pet
-
 end
-#add user input and user command prompts
 
+#add user input and user command prompts
 puts "\nWhat kind of pet would you like to have?"
 pet = gets.chomp
 puts "\nWhat would you like to name your #{pet}?"
