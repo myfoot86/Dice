@@ -1,0 +1,175 @@
+#make pet
+
+#class thats a pet
+class Pet
+  
+  #initilize all instance variables that track interaction with pet
+  def initialize (name, pet)
+  	@name = name
+  	@pet = pet
+  	@asleep = false
+  	@food_belly = 7
+  	@poop = 0
+  	@age = 0
+  	puts "\n#{@name} is born! What a cute little #{pet}!"
+  end		
+ 
+  #def each method for interacting with pet, each takes time.
+  #sleep, eat, play, poop, etc.
+def feed
+	puts "You feed #{@name}."
+	puts "They seem like a more content #{@pet}"
+	@food_belly = 7
+	time_passes
+end
+
+def play
+	play_array = [
+      "You throw a ball, but #{@name} destroys it. Your #{@pet} drops a few pieces in front of you.",
+      "#{@name} is super excited and begins to rush around, knocking a lamp over. #{@name} jumps at the crash.",
+      "#{@name} seems more interested in a strange reflection on the ceiling.",
+      "You open the door but it is raining, your #{@pet} seems unbothered and runs outside. #{@name} shakes water all over the floor on their way back in."
+				 ]
+	play_output = play_array.sample
+	puts "#{play_output}"
+	time_passes
+end
+
+def rock
+    puts "You gently rock #{@name}. Your #{@pet} looks like they are getting sleepy."
+	@asleep = true
+	puts "Do you want to put #{@name} to bed?"
+	puts "Yes or No"
+	rock_yes_no = gets.chomp.capitalize
+	if rock_yes_no == "Yes"
+      put_to_bed
+    elsif rock_yes_no == "No"
+      puts "You shake #{@name} back awake, no time for sleeping right now."
+    else
+      puts "Fine, do your own thing I guess."
+    end
+    time_passes
+end
+
+def put_to_bed
+	@asleep = true
+		4.times do
+			if @alseep == true
+				time_passes
+			end	
+
+			if @asleep == true
+				puts "#{@name} makes odd snoring noises for a #{@pet}"
+			end
+		end	
+	if @asleep == false
+			puts "#{@name} streches it's cute #{@pet} body and slowly wakes up."
+	end
+end
+
+def toss
+	toss_array = [
+      "You toss #{@name} up into the air, they seem to enjoy it!",
+      "#{@name} goes flying further than you intended, it's tough but you catch their oddly shaped #{@pet} body.",
+      "You pause a moment to consider if throwing a #{@pet}, into the air is the best idea... Yes, it is!",
+      "It hurts your arms a bit but #{@name} seems to really enjoy it."
+	]
+	toss_output = toss_array.sample
+	puts "#{toss_output}"
+	time_passes
+end
+
+#define time, poop, sleep, hunger, growth?
+def hungry?
+	@food_belly <= 1
+end
+
+def poopy?
+	@poop >= 10
+end
+
+def age?
+	@age >= 20
+end
+
+def time_passes
+	@age = @age + 1
+	if @food_belly >= 1
+	     @food_belly = @food_belly - 1
+	     @poop = @poop + 1
+
+    else
+   	  if @asleep == true
+   	     @asleep = false
+   	     puts "#{@name} wakes up suddenly." 
+   	  end
+    puts "You can hear #{@name}'s' stomoch growling, they are ravenously hungry."
+    puts "You are the only choice meat around, #{@name} turns you into a satisfying meal."
+    puts "Sorry about your luck, try a different pet next time."
+      exit
+    end
+  
+    if @poop >= 8
+    	@poop = 0
+    	puts "Whoops, #{@name} dropped a big old steaming pile of #{@pet} poop right on the floor!"
+    end
+
+    if hungry?
+    	if @asleep == true
+    		@asleep = false
+    		puts "#{@name} wakes up suddenly."
+    	end
+        puts "You watch your #{@pet} walk over to their empty food bowl and poke around hopefully."
+    end
+
+    if poopy?
+    	if @asleep == true
+    		@asleep = false
+    		puts "#{@name} awakens quickly with a startled sound."
+    	end
+    	puts "#{@name} starts to do the potty dance."
+    end
+
+    if age?
+    	puts "#{@name} has grown into a wonderful #{@pet}.  It is time for #{@name} to head off on their own."
+    	puts "#{@name} give one last look at you before dissapearing from sight, maybe one day you will see that cute #{@pet} face again."
+    	exit
+    end
+
+end
+
+#ends class Pet
+
+end
+#add user input and user command prompts
+
+puts "\nWhat kind of pet would you like to have?"
+pet = gets.chomp
+puts "\nWhat would you like to name your #{pet}?"
+name = gets.chomp
+
+critter = Pet.new(name, pet)
+
+while true
+  puts ""	
+  puts "What would you like to do with #{name}?"
+  puts "feed, play, toss, rock, put to bed"
+  puts ""
+  command = gets.chomp.downcase
+  puts ""
+
+  if command == "feed"
+	  critter.feed
+  elsif command == "play"
+  	  critter.play
+  elsif command == "toss"
+	  critter.toss
+  elsif command == "rock"
+  	  critter.rock
+  elsif command == "put to bed"
+  	  critter.put_to_bed
+  else 
+  	puts "\nPlease choose a specific action for your pet #{pet}"
+  end
+end
+
